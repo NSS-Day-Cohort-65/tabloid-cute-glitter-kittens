@@ -1,16 +1,23 @@
-namespace Category.Controllers
+using Microsoft.AspNetCore.Mvc;
+using Tabloid.Data;
+
+namespace Tabloid.Controllers;
+[Route("api/[controller]")]
+[ApiController]
+public class CategoryController : ControllerBase
 {
 
-    using Microsoft.AspNetCore.Mvc;
+    public TabloidDbContext _dbContext { get; set; }
 
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoryController : ControllerBase
+    public CategoryController(TabloidDbContext dbContext)
     {
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-            return Ok();
-        }
+        _dbContext = dbContext;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        var categories = _dbContext.Categories.OrderBy(c => c.Name).ToList();
+        return Ok(categories);
     }
 }
