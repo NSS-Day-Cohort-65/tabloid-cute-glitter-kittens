@@ -55,6 +55,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
                 <TagsList />
               </AuthorizedRoute>
             } />
+        </Route>
         <Route path='/categories'>
           <Route
             index

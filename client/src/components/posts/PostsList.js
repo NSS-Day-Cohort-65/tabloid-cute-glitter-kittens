@@ -23,7 +23,7 @@ export default function PostsList () {
         }
     };
 
-    if (!posts) {
+    if (!posts.length) {
         return null;
     }
     return (

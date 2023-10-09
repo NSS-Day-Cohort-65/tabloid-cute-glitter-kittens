@@ -16,7 +16,7 @@ public class PostController : ControllerBase
 
     // get all posts, not including any with a publishDateTime in the future
     [HttpGet]
-    // [Authorize]
+    [Authorize]
     public IActionResult Get()
     {
         return Ok(_dbContext.Posts
