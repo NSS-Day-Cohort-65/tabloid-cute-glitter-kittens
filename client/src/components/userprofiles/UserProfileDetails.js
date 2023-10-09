@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProfile } from "../../managers/userProfileManager";
+import { getUserById } from "../../managers/userProfileManager";
 
 export default function UserProfileDetails() {
   const [userProfile, setUserProfile] = useState();
@@ -8,7 +8,7 @@ export default function UserProfileDetails() {
   const { id } = useParams();
 
   useEffect(() => {
-    getProfile(id).then(setUserProfile);
+    getUserById(id).then(setUserProfile);
   }, [id]);
 
   if (!userProfile) {
