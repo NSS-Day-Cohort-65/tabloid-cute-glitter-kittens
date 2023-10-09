@@ -24,11 +24,8 @@ export default function UserProfileList() {
       <Table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-
             <th>Username</th>
-
+            <th>Name</th>
             <th>Roles</th>
             <th>Details</th>
             
@@ -37,11 +34,8 @@ export default function UserProfileList() {
         <tbody>
           {userProfiles.map(up => (
             <tr key={up.id}>
-              <th scope='row'>{up.id}</th>
-              <td>{`${up.firstName} ${up.lastName}`}</td>
-
-              <td>{up.userName}</td>
-
+              <th scope='row'>{up.userName}</th>
+              <td>{`${up.fullName}`}</td>
               <td>{up.roles}</td>
               <td><Link to={`${up.id}`}><Button>Details</Button></Link></td>
 
