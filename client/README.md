@@ -1,0 +1,1 @@
+# Tabloid Full Stack Group Project
