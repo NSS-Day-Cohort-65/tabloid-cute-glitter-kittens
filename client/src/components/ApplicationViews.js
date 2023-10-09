@@ -5,6 +5,7 @@ import Register from "./auth/Register";
 import UserProfileList from "./userprofiles/UserProfilesList";
 import UserProfileDetails from "./userprofiles/UserProfileDetails";
 import TagsList from "./tags/TagsList";
+import { CategoriesList } from './categories/CategoriesList';
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -44,6 +45,15 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
                 <TagsList />
               </AuthorizedRoute>
             } />
+        <Route path='/categories'>
+          <Route
+            index
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
+                <CategoriesList />
+              </AuthorizedRoute>
+            }
+          />
         </Route>
         <Route
           path="login"
