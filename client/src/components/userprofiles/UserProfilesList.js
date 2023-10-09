@@ -1,25 +1,56 @@
 import { useEffect, useState } from "react";
-import { getProfiles } from "../../managers/userProfileManager";
+import { getUserProfilesWithRoles } from "../../managers/userProfileManager";
 import { Link } from "react-router-dom";
+import { Table, Button } from "reactstrap";
 
 export default function UserProfileList() {
-  const [userprofiles, setUserProfiles] = useState([]);
+  const [userProfiles, setUserProfiles] = useState([]);
 
-  const getUserProfiles = () => {
-    getProfiles().then(setUserProfiles);
+  const getSetUserProfiles = () => {
+    getUserProfilesWithRoles().then(setUserProfiles);
   };
-  useEffect(() => {
-    getUserProfiles();
-  }, []);
+
+  useEffect(
+    getSetUserProfiles
+  , [])
+
+  if (!userProfiles) {
+    return null;
+  }
+
   return (
-    <>
-      <p>User Profile List</p>
-      {userprofiles.map((p) => (
-        <p key={p.id}>
-          {p.firstName} {p.lastName} {p.userName}{" "}
-          <Link to={`/userprofiles/${p.id}`}>Details</Link>
-        </p>
-      ))}
-    </>
-  );
+    <div className="container">
+      <h4 className="sub-menu">User Profiles</h4>
+      <Table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+
+            <th>Username</th>
+
+            <th>Roles</th>
+            <th>Details</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {userProfiles.map(up => (
+            <tr key={up.id}>
+              <th scope='row'>{up.id}</th>
+              <td>{`${up.firstName} ${up.lastName}`}</td>
+
+              <td>{up.userName}</td>
+
+              <td>{up.roles}</td>
+              <td><Link to={`${up.id}`}><Button>Details</Button></Link></td>
+
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
+  )
+
+
 }
