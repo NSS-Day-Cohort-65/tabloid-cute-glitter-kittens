@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tabloid.Data;
 
@@ -15,6 +16,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> Get()
     {
         var categories = _dbContext.Categories.OrderBy(c => c.Name).ToList();
