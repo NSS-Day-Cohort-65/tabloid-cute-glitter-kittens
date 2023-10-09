@@ -73,7 +73,6 @@ public class TabloidDbContext : IdentityDbContext<IdentityUser>
             },
 
         });
-
         modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>[]
         {
             new IdentityUserRole<string>
