@@ -28,13 +28,29 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
             <NavbarToggler onClick={toggleNavbar} />
             <Collapse isOpen={open} navbar>
               <Nav navbar>
-                {loggedInUser.roles.includes("Admin") && (
                   <NavItem>
-                    <NavLink tag={RRNavLink} to="/userprofiles">
-                      User Profiles
+                    <NavLink tag={RRNavLink} to="/posts">
+                      Posts
                     </NavLink>
                   </NavItem>
-                )}
+                {loggedInUser.roles.includes("Admin") && (
+                  <>
+                    <NavItem>
+                      <NavLink tag={RRNavLink} to="/userprofiles">
+                        User Profiles
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink tag={RRNavLink} to="/categories">
+                        Category Managment
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                    <NavLink tag={RRNavLink} to ="/tags">
+                      Tag Management
+                    </NavLink>
+                  </NavItem>
+                  </>)}
               </Nav>
             </Collapse>
             <Button
