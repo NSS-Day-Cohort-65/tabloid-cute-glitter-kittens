@@ -81,21 +81,36 @@ public class UserProfileController : ControllerBase
         return NoContent();
     }
 
-    [Authorize]
+    // access user details by id; includes roles
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin")]
     public IActionResult GetById(int id)
     {
-        UserProfile user = _dbContext
+
+        UserProfile foundUser = _dbContext
             .UserProfiles
             .Include(up => up.IdentityUser)
-            .SingleOrDefault(up => up.Id == id);
-
-        if (user == null)
+            .Select(up => new UserProfile
+            {
+                Id = up.Id,
+                IdentityUserId = up.IdentityUserId,
+                FirstName = up.FirstName,
+                LastName = up.LastName,
+                UserName = up.IdentityUser.UserName,
+                Email = up.IdentityUser.Email,
+                CreateDateTime = up.CreateDateTime,
+                ImageLocation = up.ImageLocation,
+                Roles = _dbContext.UserRoles
+                .Where(ur => ur.UserId == up.IdentityUserId)
+                .Select(ur => _dbContext.Roles.SingleOrDefault(r => r.Id == ur.RoleId).Name).ToList()
+            })
+        .SingleOrDefault(up => up.Id == id);
+        
+        if (foundUser == null)
         {
             return NotFound();
         }
-        user.Email = user.IdentityUser.Email;
-        user.UserName = user.IdentityUser.UserName;
-        return Ok(user);
+
+        return Ok(foundUser);
     }
 }

@@ -14,6 +14,7 @@ export default function TagsList() {
         <Table>
             <thead>
                 <tr>
+                <Button>Add New Tag</Button>
                     <th>Name</th>
                 </tr>
             </thead>
@@ -21,7 +22,6 @@ export default function TagsList() {
                 {tags.map((t) => (
                     <tr key={t.id}>
                         <th scope="row">{`${t.name}`}</th>
-                        <Button>Add New Tag</Button>
                         <Button>Delete Tag</Button>
                         <Button>Edit Tag</Button>
                     </tr>
