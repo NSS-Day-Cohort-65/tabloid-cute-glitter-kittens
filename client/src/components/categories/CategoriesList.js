@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getAllCategories } from '../../managers/categoryManager';
 import { Button, Container, List, ListGroup, ListGroupItem } from 'reactstrap';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const CategoriesList = () => {
     const [categories, setCategories] = useState([]);
@@ -17,13 +18,22 @@ export const CategoriesList = () => {
         console.log(`Edit #${categoryId}`);
     }
 
+    const navigate = useNavigate()
+
+    const handleNavigate = (e) => {
+        e.preventDefault()
+        navigate('create')
+    } 
+
     useEffect(() => {
         loadCategories();
     }, [])
+
     return (
         <Container>
             <List>
                 <ListGroup>
+                    <Button onClick={(e) => {handleNavigate(e)}}>Create Category</Button>
                     {categories.length > 0 && categories.map(c => {
                         return (
                             <ListGroupItem key={c.id}>
