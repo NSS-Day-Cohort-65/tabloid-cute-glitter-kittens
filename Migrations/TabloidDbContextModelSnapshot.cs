@@ -116,7 +116,7 @@ namespace Tabloid.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "d0292e1d-b46b-4d9e-aeab-810ee7732c9f",
+                            ConcurrencyStamp = "b65d74cc-83ad-4cf7-b165-f5a84c38fb5b",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -215,13 +215,13 @@ namespace Tabloid.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0f310724-6162-4f8d-8e4c-c61532c6c526",
+                            ConcurrencyStamp = "b25f7b1a-41dd-48f1-b414-9fefd4905f11",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEKtsuqOWV0w3XESil/6BIek/UdFnM7/n/Wlx9FEWAIpKbqRHRiXI2XBR410oUAU+1g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED2a03BQMWEYT7Q/SalawIeVxbuiSocvApoQj6jHXYfXGCF3aDLWcFBeUqy3ENAoUg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1a8da403-8963-4eb6-a81a-218229be7e0c",
+                            SecurityStamp = "de266894-6a40-4914-bddd-09238b2264f0",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -229,13 +229,13 @@ namespace Tabloid.Migrations
                         {
                             Id = "d8d76512-74f1-43bb-b1fd-87d3a8aa36df",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a0c5550d-37ef-466e-a914-bf7d4aa07c43",
+                            ConcurrencyStamp = "954e3c8f-292b-4146-9767-0668d31441ed",
                             Email = "john@doe.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEPJ7Zk5lH1bgrBfRqoUWDRzv2UikLE62wPP4pG+q2gFVxwKC2Ox1buX2dFZyCGysIQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKySfrvw+oeQX6WK+bqTKetagy2KqXMeSxeSFjuLUSoBGccbSyhYRcS0afn5Z76SYw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f59e9f16-b8bc-408e-b2e6-d1dac9b8163b",
+                            SecurityStamp = "c5aa54f9-8cb7-4642-9611-adb053dc053c",
                             TwoFactorEnabled = false,
                             UserName = "JohnDoe"
                         },
@@ -243,13 +243,13 @@ namespace Tabloid.Migrations
                         {
                             Id = "a7d21fac-3b21-454a-a747-075f072d0cf3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "31667b69-b6f7-4b5e-be11-65cd8a5d4598",
+                            ConcurrencyStamp = "250ae9cc-eeac-4b65-a36d-0a9c570facb2",
                             Email = "jane@smith.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEExGL+txqjOShU9T6ACEyXHwLUDK0KxWYrl2c6Ax4d4tA1Z+h2C/8oOiev4HaD6F1g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFfmInaN3Qr1VkiIB2HI7C77jqnXWcPCFKfoc3XonufVOzzh7NxfDp/j0RLlnITIvg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7e9d1aaa-0be9-4d99-9f73-0ee9e614a898",
+                            SecurityStamp = "a02dfab4-6889-4dbe-a39b-49425865f152",
                             TwoFactorEnabled = false,
                             UserName = "JaneSmith"
                         },
@@ -257,13 +257,13 @@ namespace Tabloid.Migrations
                         {
                             Id = "c806cfae-bda9-47c5-8473-dd52fd056a9b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "25f43650-eaaa-4273-b2ee-b88d3c00deeb",
+                            ConcurrencyStamp = "54968add-7606-4ddf-8d47-66f8a405a2e6",
                             Email = "alice@johnson.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEBjShgMr7jFpkdFN/XxAswQOmqySxOwCGMMbShzTHzWBRkMpbQyVu27ZFawxYZIXbQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPreWB34cmmct2NK7ScpjFCXH0NVjLaHvGLV0j7hQM3x+wXXKdTSKODv2c7DSRryJQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "dfa06b52-2572-4741-b8c3-a367de37d189",
+                            SecurityStamp = "a611333f-03fb-433c-9b88-264f6cd9d036",
                             TwoFactorEnabled = false,
                             UserName = "AliceJohnson"
                         },
@@ -271,13 +271,13 @@ namespace Tabloid.Migrations
                         {
                             Id = "9ce89d88-75da-4a80-9b0d-3fe58582b8e2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "09151299-eb09-4292-9b93-93b3acc057b1",
+                            ConcurrencyStamp = "e7c647d4-a878-4d97-8a23-8e532d3ff35e",
                             Email = "bob@williams.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEHaIi3PoyRHIha61XZDfqFXCJgBDe5ieeoQJm3si65I6m1lZslNaPlLiGvuLrySokA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOHAcyOYgemraDpIw4+z3TnkHyX6dnthvkSSD6zmxouNZehc0NgiDCvupa4nN5/p1A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "69fd0bf2-eabb-403f-a0b8-42b7c519c5f4",
+                            SecurityStamp = "6acebebf-e2a4-412f-8237-03558645db6c",
                             TwoFactorEnabled = false,
                             UserName = "BobWilliams"
                         },
@@ -285,13 +285,13 @@ namespace Tabloid.Migrations
                         {
                             Id = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0bcf428b-cfc0-466d-8a65-af66cd976a94",
+                            ConcurrencyStamp = "b6392f44-52e7-4eed-b6ff-84a860d889de",
                             Email = "Eve@Davis.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEE2PRVbvNCGvRhCc/hv6aAsEk0WkiW/h2F5R10UN3mVaZmivGpBcAi2L4bH2IHrdYA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP14XNK09K9AhOFggWr7i07I1nr0pkpsr7jYaq5ijsJUtnFFfWVsOok8vhcy/4tllw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c0e79b09-4d50-4999-8030-0d4681999a24",
+                            SecurityStamp = "f2bb0097-bf35-4013-987f-2a415ea50030",
                             TwoFactorEnabled = false,
                             UserName = "EveDavis"
                         });
@@ -436,7 +436,7 @@ namespace Tabloid.Migrations
                             Id = 1,
                             CategoryId = 3,
                             Content = "Spent the day at the beach with my cat friends. 🏖️ Perfect weather and even better company! ☀️😄😾",
-                            CreateDateTime = new DateTime(2023, 10, 9, 11, 55, 53, 12, DateTimeKind.Local).AddTicks(3795),
+                            CreateDateTime = new DateTime(2023, 10, 10, 10, 6, 32, 561, DateTimeKind.Local).AddTicks(4947),
                             ImageLocation = "",
                             IsApproved = false,
                             PublishDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -448,7 +448,7 @@ namespace Tabloid.Migrations
                             Id = 2,
                             CategoryId = 1,
                             Content = "Huge discounts this weekend only at John's Cat Cabana! Grab your favorite items right meow at 30% off. Don't miss out! 💥🛍️😾",
-                            CreateDateTime = new DateTime(2023, 10, 9, 11, 55, 53, 12, DateTimeKind.Local).AddTicks(3834),
+                            CreateDateTime = new DateTime(2023, 10, 10, 10, 6, 32, 561, DateTimeKind.Local).AddTicks(4986),
                             ImageLocation = "",
                             IsApproved = false,
                             PublishDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -460,7 +460,7 @@ namespace Tabloid.Migrations
                             Id = 3,
                             CategoryId = 2,
                             Content = "Did you know that eating some fruits and vegetables can make you sick? Learn more about the benefits of a balanced diet in our latest blog post. Link in bio! Cats like watermelon 🥦🍎😾",
-                            CreateDateTime = new DateTime(2023, 10, 9, 11, 55, 53, 12, DateTimeKind.Local).AddTicks(3838),
+                            CreateDateTime = new DateTime(2023, 10, 10, 10, 6, 32, 561, DateTimeKind.Local).AddTicks(4988),
                             ImageLocation = "",
                             IsApproved = false,
                             PublishDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -472,7 +472,7 @@ namespace Tabloid.Migrations
                             Id = 4,
                             CategoryId = 2,
                             Content = "Did you know that having a cat can reduce stress and increase happiness? Learn more about the perks of being a cat parent in our blog post. Link in bio! 🐾😻",
-                            CreateDateTime = new DateTime(2023, 10, 9, 11, 55, 53, 12, DateTimeKind.Local).AddTicks(3839),
+                            CreateDateTime = new DateTime(2023, 10, 10, 10, 6, 32, 561, DateTimeKind.Local).AddTicks(4990),
                             ImageLocation = "",
                             IsApproved = false,
                             PublishDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -661,7 +661,7 @@ namespace Tabloid.Migrations
                         new
                         {
                             Id = 1,
-                            BeginDateTime = new DateTime(2023, 10, 9, 11, 55, 53, 12, DateTimeKind.Local).AddTicks(3906),
+                            BeginDateTime = new DateTime(2023, 10, 10, 10, 6, 32, 561, DateTimeKind.Local).AddTicks(5051),
                             EndDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProviderUserProfileId = 1,
                             SubscriberUserProfileId = 2
@@ -669,7 +669,7 @@ namespace Tabloid.Migrations
                         new
                         {
                             Id = 2,
-                            BeginDateTime = new DateTime(2023, 10, 9, 11, 55, 53, 12, DateTimeKind.Local).AddTicks(3908),
+                            BeginDateTime = new DateTime(2023, 10, 10, 10, 6, 32, 561, DateTimeKind.Local).AddTicks(5053),
                             EndDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProviderUserProfileId = 2,
                             SubscriberUserProfileId = 1
@@ -677,7 +677,7 @@ namespace Tabloid.Migrations
                         new
                         {
                             Id = 3,
-                            BeginDateTime = new DateTime(2023, 10, 9, 11, 55, 53, 12, DateTimeKind.Local).AddTicks(3910),
+                            BeginDateTime = new DateTime(2023, 10, 10, 10, 6, 32, 561, DateTimeKind.Local).AddTicks(5054),
                             EndDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProviderUserProfileId = 4,
                             SubscriberUserProfileId = 3
