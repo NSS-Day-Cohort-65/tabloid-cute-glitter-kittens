@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Update.Internal;
 using Tabloid.Data;
 
 [ApiController]
@@ -22,6 +23,7 @@ public class PostController : ControllerBase
         return Ok(_dbContext.Posts
             .Include(p => p.Category)
             .Include(p => p.UserProfile)
+                .ThenInclude(up=>up.IdentityUser)
             .Where(p => p.PublishDateTime < DateTime.Now)
             .ToList());
     }
