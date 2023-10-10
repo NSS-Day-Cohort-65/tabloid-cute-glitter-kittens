@@ -52,22 +52,20 @@ export default function PostsList() {
                                 <strong>{p.title}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{p.userProfile.fullName}&nbsp;&nbsp;&nbsp;&nbsp;<i>#{p.category.name}</i>
                             </AccordionHeader>
                             <AccordionBody accordionId={p.id.toString()}>
-                                <div>
+                                <div className="container">
 
-                                    <p>Title: {p.title}</p>
+                                    <h5> {p.title}</h5>
 
                                     <p>{p.imageLocation}</p>
                                     {/* tested: will not show up if it's null */}
 
-                                    <p>Username: {p.userProfile.identityUser.userName}</p>
+                                    <p>Writen By {p.userProfile.identityUser.userName}</p>
 
-                                    <p>Content: {p.content}</p>
-
+                                    <p>{new Date(p.createDateTime).toLocaleDateString()}</p>
+                                    {/* should be published date, but nothing is published yet. */}
                                     {/* <p>{p.publishDateTime}</p> */}
 
-                                    <p>Created On: {new Date(p.createDateTime).toLocaleDateString()}</p>
-                                    {/* should be published date, but nothing is published yet. */}
-
+                                    <p>{p.content}</p>
                                 </div>
                             </AccordionBody>
                         </AccordionItem>
