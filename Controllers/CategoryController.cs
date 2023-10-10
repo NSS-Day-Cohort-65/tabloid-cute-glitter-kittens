@@ -22,4 +22,13 @@ public class CategoryController : ControllerBase
         var categories = _dbContext.Categories.OrderBy(c => c.Name).ToList();
         return Ok(categories);
     }
+
+    [HttpPost]
+    [Authorize]
+    public IActionResult CreateCategory(Category category)
+    {
+        _dbContext.Categories.Add(category);
+        _dbContext.SaveChanges();
+        return Created($"/api/categories/{category.Id}", category);
+    }
 }
