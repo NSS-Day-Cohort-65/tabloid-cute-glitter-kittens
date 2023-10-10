@@ -23,7 +23,10 @@ public class UserProfileController : ControllerBase
     [Authorize]
     public IActionResult Get()
     {
-        return Ok(_dbContext.UserProfiles.ToList());
+        return Ok(_dbContext
+            .UserProfiles
+            .Where(up => up.IsActive == true)
+            .ToList());
     }
 
     [HttpGet("withroles")]
@@ -40,12 +43,15 @@ public class UserProfileController : ControllerBase
             Email = up.IdentityUser.Email,
             UserName = up.IdentityUser.UserName,
             IdentityUserId = up.IdentityUserId,
+            IsActive = up.IsActive,
             Roles = _dbContext.UserRoles
             .Where(ur => ur.UserId == up.IdentityUserId)
             .Select(ur => _dbContext.Roles.SingleOrDefault(r => r.Id == ur.RoleId).Name)
             .ToList()
            
-        }).OrderBy(up => up.UserName)
+        })
+        .Where(up => up.IsActive == true)
+        .OrderBy(up => up.UserName)
         );
     }
 
@@ -81,7 +87,7 @@ public class UserProfileController : ControllerBase
         return NoContent();
     }
 
-    // access user details by id; includes roles
+    // access certain user details by id; includes roles
     [HttpGet("{id}")]
     [Authorize(Roles = "Admin")]
     public IActionResult GetById(int id)
@@ -112,5 +118,26 @@ public class UserProfileController : ControllerBase
         }
 
         return Ok(foundUser);
+    }
+
+    // soft delete: deactivates given user by id
+    [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult DeactivateById(int id)
+    {
+        UserProfile foundUser = _dbContext
+            .UserProfiles
+            .SingleOrDefault(up => up.Id == id);
+
+        if (foundUser == null)
+        {
+            return NotFound();
+        }
+
+        foundUser.IsActive = false;
+
+        _dbContext.SaveChanges();
+
+        return NoContent();
     }
 }

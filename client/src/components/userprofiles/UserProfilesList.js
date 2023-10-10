@@ -1,20 +1,39 @@
 import { useEffect, useState } from "react";
-import { getUserProfilesWithRoles } from "../../managers/userProfileManager";
+import { deactivateUserById, getUserProfilesWithRoles } from "../../managers/userProfileManager";
 import { Link } from "react-router-dom";
-import { Table, Button } from "reactstrap";
+import { Table, Button, ModalHeader, ModalBody, Modal, ModalFooter } from "reactstrap";
 
 export default function UserProfileList() {
   const [userProfiles, setUserProfiles] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [selectedUserObj, setSelectedUserObj] = useState({});
 
-  const getSetUserProfiles = () => {
+  const populateUserProfiles = () => {
     getUserProfilesWithRoles().then(setUserProfiles);
   };
 
-  useEffect(
-    getSetUserProfiles
-  , [])
+  useEffect(() => {
+    populateUserProfiles()
+  }, 
+  []);
 
-  if (!userProfiles) {
+  const toggleModal = () => {setModal(!modal)};
+
+  const handleDeactivateInitial = (e, user) => {
+    e.preventDefault();
+    setSelectedUserObj(user)
+    console.log(user)
+    toggleModal();
+  }
+
+  const handleDeactivate = (e) => {
+    e.preventDefault();
+    deactivateUserById(selectedUserObj.id)
+    .then(() => toggleModal())
+    .then(() => populateUserProfiles())
+  }
+
+  if (userProfiles.length === 0) {
     return null;
   }
 
@@ -28,7 +47,7 @@ export default function UserProfileList() {
             <th>Name</th>
             <th>Roles</th>
             <th>Details</th>
-            
+            <th>Deactivate</th>
           </tr>
         </thead>
         <tbody>
@@ -38,11 +57,25 @@ export default function UserProfileList() {
               <td>{`${up.fullName}`}</td>
               <td>{up.roles}</td>
               <td><Link to={`${up.id}`}><Button>Details</Button></Link></td>
-
+              <td><Button color="danger" onClick={(e) => handleDeactivateInitial(e, up)}>Destroy</Button></td>
             </tr>
           ))}
         </tbody>
       </Table>
+      <Modal isOpen={modal}>
+        <ModalHeader>Deactivate user</ModalHeader>
+        <ModalBody>
+          Are you sure you want to deactivate user {selectedUserObj.fullName}?
+        </ModalBody>
+        <ModalFooter>
+          <Button color="warning" onClick={(e) => handleDeactivate(e)}>
+            Yes; destroy.
+          </Button>
+          <Button onClick={() => toggleModal()}>
+            No!!
+          </Button>
+        </ModalFooter>
+      </Modal>
     </div>
   )
 
