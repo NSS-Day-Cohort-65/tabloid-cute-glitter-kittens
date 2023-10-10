@@ -480,3 +480,4 @@ $RECYCLE.BIN/
 *.lnk
 
 /Migrations
+TabloidDbContextModelSnapshot.cs
