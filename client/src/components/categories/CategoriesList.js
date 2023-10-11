@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getAllCategories } from '../../managers/categoryManager';
 import { Button, Container, List, ListGroup, ListGroupItem } from 'reactstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const CategoriesList = () => {
     const [categories, setCategories] = useState([]);
