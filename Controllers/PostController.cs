@@ -23,7 +23,7 @@ public class PostController : ControllerBase
         return Ok(_dbContext.Posts
             .Include(p => p.Category)
             .Include(p => p.UserProfile)
-                .ThenInclude(up=>up.IdentityUser)
+                .ThenInclude(up => up.IdentityUser)
             .Where(p => p.PublishDateTime < DateTime.Now)
             .ToList());
     }
@@ -35,7 +35,7 @@ public class PostController : ControllerBase
     {
         Post post = _dbContext.Posts
         .Include(p => p.UserProfile)
-            .ThenInclude(up=>up.IdentityUser)
+            .ThenInclude(up => up.IdentityUser)
         .SingleOrDefault(p => p.Id == id);
 
         if (post == null)
@@ -44,5 +44,15 @@ public class PostController : ControllerBase
         }
 
         return Ok(post);
+    }
+
+    [HttpPost]
+    [Authorize]
+    public IActionResult CreatePost(Post post)
+    {
+        post.CreateDateTime = DateTime.Now;
+        _dbContext.Posts.Add(post);
+        _dbContext.SaveChanges();
+        return Created($"/api/post/{post.Id}", post);
     }
 }
