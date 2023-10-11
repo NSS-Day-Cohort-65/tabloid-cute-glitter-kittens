@@ -18,14 +18,27 @@ public class PostController : ControllerBase
     // get all posts, not including any with a publishDateTime in the future
     [HttpGet]
     [Authorize]
-    public IActionResult Get()
+    public IActionResult Get(int? categoryId)
     {
-        return Ok(_dbContext.Posts
+        if(categoryId != null)
+        {
+            return Ok(_dbContext.Posts
+            .Include(p => p.Category)
+            .Include(p => p.UserProfile)
+                .ThenInclude(up=>up.IdentityUser)
+            .Where(p => p.CategoryId == categoryId)
+            .Where(p => p.PublishDateTime < DateTime.Now)
+            .ToList());
+        }
+        else {
+            return Ok(_dbContext.Posts
             .Include(p => p.Category)
             .Include(p => p.UserProfile)
                 .ThenInclude(up => up.IdentityUser)
             .Where(p => p.PublishDateTime < DateTime.Now)
             .ToList());
+        }
+        
     }
 
     // get post by Id, with UserProfile, then identityUser for Author's UserName

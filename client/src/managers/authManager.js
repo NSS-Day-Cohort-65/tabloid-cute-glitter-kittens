@@ -1,6 +1,7 @@
 const _apiUrl = "/api/auth";
 
 export const login = (email, password) => {
+
   return fetch(_apiUrl + "/login", {
     method: "POST",
     credentials: "same-origin",
