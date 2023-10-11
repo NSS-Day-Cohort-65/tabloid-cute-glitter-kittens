@@ -5,7 +5,9 @@ import {
     AccordionBody,
     AccordionHeader,
     AccordionItem,
+    Button,
 } from 'reactstrap';
+import { Link } from "react-router-dom";
 
 export default function PostsList() {
     const [posts, setPosts] = useState([]);
@@ -22,6 +24,7 @@ export default function PostsList() {
             setOpen(id);
         }
     };
+
 
     if (!posts.length) {
         return null;
@@ -50,6 +53,9 @@ export default function PostsList() {
                         <AccordionItem key={p.id}>
                             <AccordionHeader targetId={p.id.toString()}>
                                 <strong>{p.title}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{p.userProfile.fullName}&nbsp;&nbsp;&nbsp;&nbsp;<i>#{p.category.name}</i>
+                                <Link to={`/posts/${p.id}/comments`}>
+                                    <Button>View Comments</Button>
+                                </Link>
                             </AccordionHeader>
                             <AccordionBody accordionId={p.id.toString()}>
                                 <div className="container">

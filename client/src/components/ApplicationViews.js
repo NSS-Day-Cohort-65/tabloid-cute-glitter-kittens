@@ -10,6 +10,7 @@ import { CategoriesList } from './categories/CategoriesList';
 import CreateCategory from "./categories/CreateCategory";
 import CreateReaction from "./reactions/ReactionForm";
 import ReactionsList from "./reactions/ReactionList";
+import CommentsList from "./comments/CommentsList";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -23,14 +24,19 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             </AuthorizedRoute>
           }
         />
-        <Route path="/posts"
+        <Route path="/posts">
+          <Route
           index
           element={
             <AuthorizedRoute loggedInUser={loggedInUser}>
               <PostsList />
             </AuthorizedRoute>
-          }>
-
+          } />
+        <Route path="/posts/:postId/comments"
+          element={<AuthorizedRoute loggedInUser={loggedInUser}>
+            <CommentsList />
+          </AuthorizedRoute>}
+          />
         </Route>
         <Route path="/userprofiles">
           <Route
