@@ -33,6 +33,7 @@ public class UserProfile
     public string IdentityUserId { get; set; }
 
     public IdentityUser IdentityUser { get; set; }
+    public bool IsActive { get; set; }
 
     public string FullName
     {
