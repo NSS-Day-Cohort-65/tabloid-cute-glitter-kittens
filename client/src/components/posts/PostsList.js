@@ -5,11 +5,14 @@ import {
     AccordionBody,
     AccordionHeader,
     AccordionItem,
+    Button,
     FormGroup,
     Input,
     Label,
 } from 'reactstrap';
 import { getAllCategories } from "../../managers/categoryManager";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function PostsList() {
     const [posts, setPosts] = useState([]);
@@ -36,6 +39,13 @@ export default function PostsList() {
         }
     };
 
+    const navigate = useNavigate();
+
+    const handleNavigate = (e) => {
+        e.preventDefault()
+        navigate('create')
+    }
+
     if (!posts.length) {
         return null;
     }
@@ -44,6 +54,7 @@ export default function PostsList() {
             <h1>
                 Catty Posts
             </h1>
+
 
             <FormGroup>
             <Label>Filter by Category</Label>
@@ -61,6 +72,11 @@ export default function PostsList() {
             </Input>
             </FormGroup>
             
+
+            <div style={{ padding: "1rem" }}><Button onClick={(e) => {
+                handleNavigate(e)
+            }}>New Post</Button></div>
+
             <div>
                 <Accordion open={open} toggle={toggle}>
                     {/* the below block of code displays post only if isAppoved === true */}
