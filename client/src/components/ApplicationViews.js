@@ -10,6 +10,7 @@ import { CategoriesList } from './categories/CategoriesList';
 import CreateCategory from "./categories/CreateCategory";
 import CreateReaction from "./reactions/ReactionForm";
 import ReactionsList from "./reactions/ReactionList";
+import { CreateTag } from "./tags/CreateTag.js";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -58,6 +59,13 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
                 <TagsList />
               </AuthorizedRoute>
             } />
+        <Route path='create'
+          element={
+            <AuthorizedRoute loggedInUser={loggedInUser} >
+              <CreateTag />
+            </AuthorizedRoute>
+          }
+          />
         </Route>
         <Route path='/categories'>
           <Route
