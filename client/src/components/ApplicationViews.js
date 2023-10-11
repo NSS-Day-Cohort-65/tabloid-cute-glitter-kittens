@@ -40,7 +40,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
                   <AuthorizedRoute loggedInUser={loggedInUser}>
                     <CommentsList />
                   </AuthorizedRoute>
-                }
+                } />
           </Route>
           <Route
             path='create'
