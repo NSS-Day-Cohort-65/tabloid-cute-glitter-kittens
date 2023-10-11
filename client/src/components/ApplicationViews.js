@@ -10,6 +10,11 @@ import { CategoriesList } from './categories/CategoriesList';
 import CreateCategory from "./categories/CreateCategory";
 import CreateReaction from "./reactions/ReactionForm";
 import ReactionsList from "./reactions/ReactionList";
+<<<<<<< HEAD
+import CommentsList from "./comments/CommentsList";
+=======
+import CreatePost from './posts/CreatePost';
+>>>>>>> 166b97e8d15bf31796fd74da738df4f6429806ee
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -23,14 +28,36 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             </AuthorizedRoute>
           }
         />
-        <Route path="/posts"
+        <Route path="/posts">
+          <Route
+<<<<<<< HEAD
           index
           element={
             <AuthorizedRoute loggedInUser={loggedInUser}>
               <PostsList />
             </AuthorizedRoute>
-          }>
-
+          } />
+        <Route path="/posts/:postId/comments"
+          element={<AuthorizedRoute loggedInUser={loggedInUser}>
+            <CommentsList />
+          </AuthorizedRoute>}
+=======
+            index
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <PostsList />
+              </AuthorizedRoute>
+            }>
+          </Route>
+          <Route
+            path='create'
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <CreatePost loggedInUser={loggedInUser} />
+              </AuthorizedRoute>
+            }
+>>>>>>> 166b97e8d15bf31796fd74da738df4f6429806ee
+          />
         </Route>
         <Route path="/userprofiles">
           <Route
@@ -51,7 +78,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           />
         </Route>
         <Route path="/tags">
-            <Route
+          <Route
             index
             element={
               <AuthorizedRoute loggedInUser={loggedInUser}>
@@ -69,23 +96,23 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             }
           />
           <Route path='create'
-          element={
-            <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
-              <CreateCategory />
-            </AuthorizedRoute>
-          }
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
+                <CreateCategory />
+              </AuthorizedRoute>
+            }
           />
         </Route>
         <Route path="/reactions">
-          <Route 
+          <Route
             index
             element={
               <AuthorizedRoute loggedInUser={loggedInUser}>
                 <ReactionsList />
               </AuthorizedRoute>
-            } 
-            />
-            <Route path="create"
+            }
+          />
+          <Route path="create"
             element={
               <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
                 <CreateReaction />
