@@ -12,7 +12,6 @@ import CreateReaction from "./reactions/ReactionForm";
 import ReactionsList from "./reactions/ReactionList";
 import CommentsList from "./comments/CommentsList";
 import CreatePost from './posts/CreatePost';
-import CreatePost from './posts/CreatePost';
 import { CreateTag } from "./tags/CreateTag.js";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
