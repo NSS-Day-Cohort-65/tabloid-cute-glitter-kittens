@@ -5,8 +5,7 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
 export const CreateTag = () => {
     const [name, setName] = useState("");
-    const [errors, setErrors] = useState("");
-    
+
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -15,11 +14,12 @@ export const CreateTag = () => {
             name,
         };
 
-        createTag(newTag).then(() => {
-     
+        createTag(newTag).then((res) => {
+
                 navigate("/Tags");
-           
-        });
+
+            }
+        );
     };
 
     return (
@@ -36,21 +36,12 @@ export const CreateTag = () => {
                         }}
                     />
                 </FormGroup>
-                
+
                 <Button onClick={handleSubmit} color="primary">
                     Submit
                 </Button>
             </Form>
-            <div style={{ color: "red", background: "lightgray", padding: "1rem ", margin: "2rem 0" }}>
-                {Object.keys(errors).map((key) => (
-                    <> <p>Error Informaton:</p>
-                        <p key={key}>
-                            {key}: {errors[key].join(",")}
-                        </p>
-                    </>
-                ))}
-            </div>
-
+            
         </div>
 
     )

@@ -39,7 +39,7 @@ public class TagController : ControllerBase
         var existingTag = _dbContext.Tags.FirstOrDefault(c => c.Name == tag.Name);
         if (existingTag != null)
         {
-            return BadRequest("A tag with the same name already exists.");
+            return BadRequest(new { error = "A tag with the same name already exists." });
         }
 
         // Error Handling
