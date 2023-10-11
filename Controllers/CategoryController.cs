@@ -19,6 +19,7 @@ public class CategoryController : ControllerBase
     [Authorize]
     public async Task<IActionResult> Get()
     {
+        
         var categories = _dbContext.Categories.OrderBy(c => c.Name).ToList();
         return Ok(categories);
     }
