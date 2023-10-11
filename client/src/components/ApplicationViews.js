@@ -11,7 +11,11 @@ import CreateCategory from "./categories/CreateCategory";
 import CreateReaction from "./reactions/ReactionForm";
 import ReactionsList from "./reactions/ReactionList";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import CommentsList from "./comments/CommentsList";
+=======
+import CreatePost from './posts/CreatePost';
+>>>>>>> 166b97e8d15bf31796fd74da738df4f6429806ee
 =======
 import CreatePost from './posts/CreatePost';
 >>>>>>> 166b97e8d15bf31796fd74da738df4f6429806ee
@@ -31,6 +35,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         <Route path="/posts">
           <Route
 <<<<<<< HEAD
+<<<<<<< HEAD
           index
           element={
             <AuthorizedRoute loggedInUser={loggedInUser}>
@@ -42,6 +47,8 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             <CommentsList />
           </AuthorizedRoute>}
 =======
+=======
+>>>>>>> 166b97e8d15bf31796fd74da738df4f6429806ee
             index
             element={
               <AuthorizedRoute loggedInUser={loggedInUser}>
@@ -56,6 +63,9 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
                 <CreatePost loggedInUser={loggedInUser} />
               </AuthorizedRoute>
             }
+<<<<<<< HEAD
+>>>>>>> 166b97e8d15bf31796fd74da738df4f6429806ee
+=======
 >>>>>>> 166b97e8d15bf31796fd74da738df4f6429806ee
           />
         </Route>
