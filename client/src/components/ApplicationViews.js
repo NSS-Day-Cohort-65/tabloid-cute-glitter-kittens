@@ -8,6 +8,8 @@ import PostsList from "./posts/PostsList";
 import TagsList from "./tags/TagsList";
 import { CategoriesList } from './categories/CategoriesList';
 import CreateCategory from "./categories/CreateCategory";
+import CreateReaction from "./reactions/ReactionForm";
+import ReactionsList from "./reactions/ReactionList";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -73,6 +75,22 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             </AuthorizedRoute>
           }
           />
+        </Route>
+        <Route path="/reactions">
+          <Route 
+            index
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <ReactionsList />
+              </AuthorizedRoute>
+            } 
+            />
+            <Route path="create"
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
+                <CreateReaction />
+              </AuthorizedRoute>
+            } />
         </Route>
         <Route
           path="login"
