@@ -22,7 +22,6 @@ export default function UserProfileList() {
   const handleDeactivateInitial = (e, user) => {
     e.preventDefault();
     setSelectedUserObj(user)
-    console.log(user)
     toggleModal();
   }
 

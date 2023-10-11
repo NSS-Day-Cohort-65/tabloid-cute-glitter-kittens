@@ -479,5 +479,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-/Migrations
-TabloidDbContextModelSnapshot.cs
+Migrations
