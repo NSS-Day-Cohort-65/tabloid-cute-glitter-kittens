@@ -72,7 +72,7 @@ public class AuthController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500);
+            return StatusCode(500, $"An error occurred: {ex.Message}");
         }
     }
 
