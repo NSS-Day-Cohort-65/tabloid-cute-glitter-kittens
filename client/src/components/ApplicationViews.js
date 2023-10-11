@@ -10,6 +10,8 @@ import { CategoriesList } from './categories/CategoriesList';
 import CreateCategory from "./categories/CreateCategory";
 import CreateReaction from "./reactions/ReactionForm";
 import ReactionsList from "./reactions/ReactionList";
+import CommentsList from "./comments/CommentsList";
+import CreatePost from './posts/CreatePost';
 import CreatePost from './posts/CreatePost';
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
@@ -32,6 +34,13 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
                 <PostsList />
               </AuthorizedRoute>
             }>
+              <Route 
+                path=":postId/comments"
+                element={
+                  <AuthorizedRoute loggedInUser={loggedInUser}>
+                    <CommentsList />
+                  </AuthorizedRoute>
+                } />
           </Route>
           <Route
             path='create'
