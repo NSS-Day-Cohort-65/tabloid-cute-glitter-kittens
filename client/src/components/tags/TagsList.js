@@ -10,11 +10,15 @@ export default function TagsList() {
         getTags().then(setTags)
     }, [])
 
+    const handleDelete = (id) => {
+        console.log(`deleting ${id}`)
+    }
+
     return (
         <div className="container">
             <div className="sub-menu">
                 <h4 >Tag Management</h4>
-                <Link to="create" style={{margin:"0 1rem"}}> <Button>Add New Tag</Button></Link>
+                <Link to="create" style={{ margin: "0 1rem" }}> <Button>Add New Tag</Button></Link>
             </div>
 
             <Table>
@@ -29,7 +33,11 @@ export default function TagsList() {
                     {tags.map((t) => (
                         <tr key={t.id}>
                             <th scope="row">{`${t.name}`}</th>
-                            <td><Button>Delete Tag</Button></td>
+                            <td>
+                                <Button onClick={() => {handleDelete(t.id)}}>
+                                    Delete Tag
+                                </Button>
+                            </td>
                             <td><Button>Edit Tag</Button></td>
                         </tr>
                     ))}
