@@ -24,7 +24,7 @@ public class TagController : ControllerBase
        .ToList());
     }
 
-      // post a new tag
+    // post a new tag
     [HttpPost] // /api/tag/
     [Authorize]
     public IActionResult CreateTag([FromBody] Tag tag)
@@ -55,6 +55,23 @@ public class TagController : ControllerBase
             // Log the exception and return an appropriate error response.
             return StatusCode(500, "An error occurred while creating the tag.");
         }
+    }
+
+    //delete a tag
+    [HttpDelete("{id}")]
+    [Authorize]
+    public IActionResult DeleteTag(int id)
+    {
+        Tag tagToDelete = _dbContext.Tags.SingleOrDefault(c => c.Id == id);
+
+        if (tagToDelete == null)
+        {
+            return NotFound();
+        }
+
+        _dbContext.Tags.Remove(tagToDelete);
+        _dbContext.SaveChanges();
+        return NoContent();
     }
 
 }
