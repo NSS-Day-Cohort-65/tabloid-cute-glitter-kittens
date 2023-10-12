@@ -33,7 +33,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
               <AuthorizedRoute loggedInUser={loggedInUser}>
                 <PostsList />
               </AuthorizedRoute>
-            }>
+            }/>
               <Route 
                 path=":postId/comments"
                 element={
@@ -41,7 +41,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
                     <CommentsList />
                   </AuthorizedRoute>
                 } />
-          </Route>
+         
           <Route
             path='create'
             element={
