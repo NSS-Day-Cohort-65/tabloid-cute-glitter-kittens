@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTags } from "../../managers/tagManager";
 import { Button, Table } from "reactstrap";
+import { Link } from "react-router-dom"
 
 export default function TagsList() {
     const [tags, setTags] = useState([])
@@ -10,24 +11,31 @@ export default function TagsList() {
     }, [])
 
     return (
-        <>
-        <Table>
-            <thead>
-                <tr>
-                <Button>Add New Tag</Button>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                {tags.map((t) => (
-                    <tr key={t.id}>
-                        <th scope="row">{`${t.name}`}</th>
-                        <Button>Delete Tag</Button>
-                        <Button>Edit Tag</Button>
+        <div className="container">
+            <div className="sub-menu">
+                <h4 >Tag Management</h4>
+                <Link to="create" style={{margin:"0 1rem"}}> <Button>Add New Tag</Button></Link>
+            </div>
+
+            <Table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
                     </tr>
-                ))}
-            </tbody>
-        </Table>
-        </>
+                </thead>
+                <tbody>
+                    {tags.map((t) => (
+                        <tr key={t.id}>
+                            <th scope="row">{`${t.name}`}</th>
+                            <td><Button>Delete Tag</Button></td>
+                            <td><Button>Edit Tag</Button></td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
+
+        </div>
     )
 }

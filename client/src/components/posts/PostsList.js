@@ -11,8 +11,9 @@ import {
     Label,
 } from 'reactstrap';
 import { getAllCategories } from "../../managers/categoryManager";
-import { useNavigate } from 'react-router-dom';
 import { getTags } from "../../managers/tagManager";
+import { useNavigate, Link } from 'react-router-dom';
+
 
 
 export default function PostsList() {
@@ -22,10 +23,12 @@ export default function PostsList() {
     const [categories, setCategories] = useState([]);
     const [selectedCategoryId, setSelectedCategoryId] = useState(0);
 
+
     const [tags, setTags] = useState([]);
     const [selectedTagId, setSelectedTagId] = useState(0);
 
     const [error, setError] = useState(null);
+
 
     useEffect(() => {
         getAllPosts().then(setPosts).catch((err) => setError(err));
@@ -36,6 +39,7 @@ export default function PostsList() {
     }, []);
 
     useEffect(() => {
+
         if(selectedCategoryId != 0)
         {
             setError(null); // reset error so message is gone on selection of another category
@@ -46,6 +50,9 @@ export default function PostsList() {
             .then(setPosts)
             .catch((err) => setError(err));
         }
+
+        getAllPostsByCategory(selectedCategoryId).then(setPosts);
+
     }, [selectedCategoryId]);
 
     useEffect(() => {
@@ -121,7 +128,6 @@ export default function PostsList() {
                 </option>
               ))}
             </Input>
-            </FormGroup>
             
             {
                 error
@@ -131,9 +137,21 @@ export default function PostsList() {
                     </div>
                     :<div></div>       
             }
-            <div style={{ padding: "1rem" }}><Button onClick={(e) => {
+
+
+
+            </FormGroup>
+
+
+            <div style={{ padding: "1rem" }}>
+                <Button 
+                onClick={(e) => {
+
                 handleNavigate(e)
-            }}>New Post</Button></div>
+            }}>
+                New Post
+            </Button>
+            </div>
 
             <div>
                 <Accordion open={open} toggle={toggle}>
@@ -154,6 +172,9 @@ export default function PostsList() {
                         <AccordionItem key={p.id}>
                             <AccordionHeader targetId={p.id.toString()}>
                                 <strong>{p.title}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{p.userProfile.fullName}&nbsp;&nbsp;&nbsp;&nbsp;<i>#{p.category.name}</i>
+                                <Link to={`/posts/${p.id}/comments`}>
+                                    View Comments
+                                </Link>
                             </AccordionHeader>
                             <AccordionBody accordionId={p.id.toString()}>
                                 <div className="container">

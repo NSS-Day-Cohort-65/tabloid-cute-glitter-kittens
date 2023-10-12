@@ -19,15 +19,19 @@ public class UserProfileController : ControllerBase
         _dbContext = context;
     }
 
+    // get all user profiles which are active - currently unused
+
     [HttpGet]
     [Authorize]
-    public IActionResult Get()
+    public IActionResult GetActive()
     {
         return Ok(_dbContext
             .UserProfiles
             .Where(up => up.IsActive == true)
             .ToList());
     }
+
+    // get all user profiles, with details, which are active
 
     [HttpGet("withroles")]
     [Authorize(Roles = "Admin")]
@@ -51,6 +55,32 @@ public class UserProfileController : ControllerBase
            
         })
         .Where(up => up.IsActive == true)
+        .OrderBy(up => up.UserName)
+        );
+    }
+
+    [HttpGet("withroles/inactive")]
+    // [Authorize(Roles = "Admin")]
+    public IActionResult GetInactiveWithRoles()
+    {
+        return Ok(_dbContext.UserProfiles
+        .Include(up => up.IdentityUser)
+        .Select(up => new UserProfile
+        {
+            Id = up.Id,
+            FirstName = up.FirstName,
+            LastName = up.LastName,
+            Email = up.IdentityUser.Email,
+            UserName = up.IdentityUser.UserName,
+            IdentityUserId = up.IdentityUserId,
+            IsActive = up.IsActive,
+            Roles = _dbContext.UserRoles
+            .Where(ur => ur.UserId == up.IdentityUserId)
+            .Select(ur => _dbContext.Roles.SingleOrDefault(r => r.Id == ur.RoleId).Name)
+            .ToList()
+           
+        })
+        .Where(up => up.IsActive == false)
         .OrderBy(up => up.UserName)
         );
     }
@@ -135,6 +165,27 @@ public class UserProfileController : ControllerBase
         }
 
         foundUser.IsActive = false;
+
+        _dbContext.SaveChanges();
+
+        return NoContent();
+    }
+
+    // undo above soft delete: re-activates given user by Id
+    [HttpDelete("{id}/reactivate")]
+    // [Authorize(Roles = "Admin")]
+    public IActionResult ReactivateById(int id)
+    {
+        UserProfile foundUser = _dbContext
+            .UserProfiles
+            .SingleOrDefault(up => up.Id == id);
+
+        if (foundUser == null)
+        {
+            return NotFound();
+        }
+
+        foundUser.IsActive = true;
 
         _dbContext.SaveChanges();
 
