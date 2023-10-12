@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTags } from "../../managers/tagManager";
+import { deleteTag, getTags } from "../../managers/tagManager";
 import { Table, Button, ModalHeader, ModalBody, Modal, ModalFooter } from "reactstrap";
 import { Link } from "react-router-dom"
 
@@ -17,13 +17,13 @@ export default function TagsList() {
     const handleDelete = (tag) => {
         toggleModal();
         setSelectedTag(tag);
-        console.log(`set to ${tag.id}`)
+
     }
 
     const handleConfirmedDelete = () => {
-        console.log(`deleted ${selectedTag.name} `)
-        toggleModal()
-        //getTags.then(setTags)
+        deleteTag(selectedTag.id)
+            .then(toggleModal)
+            .then(getTags).then(setTags)
     }
 
     return (
