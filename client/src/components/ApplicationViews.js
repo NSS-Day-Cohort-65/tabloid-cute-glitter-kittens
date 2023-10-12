@@ -12,7 +12,7 @@ import CreateReaction from "./reactions/ReactionForm";
 import ReactionsList from "./reactions/ReactionList";
 import CommentsList from "./comments/CommentsList";
 import CreatePost from './posts/CreatePost';
-import CreatePost from './posts/CreatePost';
+import { CreateTag } from "./tags/CreateTag.js";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -33,7 +33,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
               <AuthorizedRoute loggedInUser={loggedInUser}>
                 <PostsList />
               </AuthorizedRoute>
-            }>
+            }/>
               <Route 
                 path=":postId/comments"
                 element={
@@ -41,7 +41,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
                     <CommentsList />
                   </AuthorizedRoute>
                 } />
-          </Route>
+         
           <Route
             path='create'
             element={
@@ -77,6 +77,13 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
                 <TagsList />
               </AuthorizedRoute>
             } />
+        <Route path='create'
+          element={
+            <AuthorizedRoute loggedInUser={loggedInUser} >
+              <CreateTag />
+            </AuthorizedRoute>
+          }
+          />
         </Route>
         <Route path='/categories'>
           <Route
