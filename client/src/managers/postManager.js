@@ -5,8 +5,28 @@ export const getAllPosts = () => {
 }
 //categoryId is int
 export const getAllPostsByCategory = (categoryId) => {
-    return fetch(`${_apiUrl}?categoryId=${categoryId}`).then((res) => res.json());
+    console.log('category: ' + categoryId)
+    return fetch(`${_apiUrl}?categoryId=${categoryId}`)
+    .then((res) => {
+        if (!res.ok) {
+            throw new Error('No posts with selected category :(');
+        }
+        return res.json();
+    });
 }
+
+//tagId is int
+export const getAllPostsByTag = (tagId) => {
+    console.log('tag: ' + tagId)
+    return fetch(`${_apiUrl}?tagId=${tagId}`)
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error('No posts with selected tag :(');
+            }
+            return res.json();
+        });
+}
+
 export const getPostById = (id) => {
     return fetch(_apiUrl + `/${id}`).then((res) => res.json());
 };

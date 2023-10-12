@@ -18,7 +18,7 @@ public class PostController : ControllerBase
     // get all posts, not including any with a publishDateTime in the future
     [HttpGet]
     [Authorize]
-    public IActionResult Get(int? categoryId)
+    public IActionResult Get(int? categoryId, int? tagId)
     {
         if(categoryId != null)
         {
@@ -29,6 +29,24 @@ public class PostController : ControllerBase
             .Where(p => p.CategoryId == categoryId)
             .Where(p => p.PublishDateTime < DateTime.Now)
             .ToList());
+        } else if(tagId != null)
+        {
+            var postIdsWithGivenTag = _dbContext.PostTags
+            .Where(pt => pt.TagId == tagId)
+            .Select(pt => pt.PostId)
+            .ToList();
+
+            if(postIdsWithGivenTag.Count > 0)
+            {
+            return Ok(_dbContext.Posts
+            .Include(p => p.Category)
+            .Include(p => p.UserProfile)
+                .ThenInclude(up => up.IdentityUser)
+            .Where(p => p.PublishDateTime < DateTime.Now)
+            .Where(p => postIdsWithGivenTag.Contains(p.Id)).ToList()); 
+            } else {
+                return NotFound();
+            }
         }
         else {
             return Ok(_dbContext.Posts
