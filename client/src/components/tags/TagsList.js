@@ -12,7 +12,7 @@ export default function TagsList() {
         getTags().then(setTags)
     }, [])
 
-    const toggleModal = () => {setModal(!modal)};
+    const toggleModal = () => { setModal(!modal) };
 
     const handleDelete = (tag) => {
         toggleModal();
@@ -20,11 +20,11 @@ export default function TagsList() {
         console.log(`set to ${tag.id}`)
     }
 
-const handleConfirmedDelete = () => {
-    console.log(`deleted ${selectedTag.name} `)
-    toggleModal()
-    //getTags.then(setTags)
-}
+    const handleConfirmedDelete = () => {
+        console.log(`deleted ${selectedTag.name} `)
+        toggleModal()
+        //getTags.then(setTags)
+    }
 
     return (
         <div className="container">
@@ -46,7 +46,7 @@ const handleConfirmedDelete = () => {
                         <tr key={t.id}>
                             <th scope="row">{`${t.name}`}</th>
                             <td>
-                                <Button onClick={() => {handleDelete(t)}}>
+                                <Button onClick={() => { handleDelete(t) }}>
                                     Delete Tag
                                 </Button>
                             </td>
@@ -57,21 +57,21 @@ const handleConfirmedDelete = () => {
             </Table>
 
             <Modal isOpen={modal}>
-            <ModalHeader>Delete Tag</ModalHeader>
+                <ModalHeader>Delete Tag</ModalHeader>
 
-            <ModalBody>
-            Are you sure you want to delete #{selectedTag.name} ?
-            </ModalBody>
+                <ModalBody>
+                    Are you sure you want to delete #{selectedTag.name} ?
+                </ModalBody>
 
-            <ModalFooter>
-            <Button color="warning" onClick={() => handleConfirmedDelete()}>
-                Ok
-            </Button>
-            <Button onClick={() => toggleModal()}>
-                No
-            </Button>
-            </ModalFooter>
-        </Modal>
+                <ModalFooter>
+                    <Button color="warning" onClick={() => handleConfirmedDelete()}>
+                        Ok
+                    </Button>
+                    <Button onClick={() => toggleModal()}>
+                        No
+                    </Button>
+                </ModalFooter>
+            </Modal>
 
         </div>
     )
