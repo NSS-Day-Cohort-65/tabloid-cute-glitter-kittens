@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -32,24 +33,39 @@ public class CommentController : ControllerBase
         return Ok(comments);
     }
 
-    [HttpPost("post/{postId}/comments")]
+    [HttpPost("post/{postId}")]
     [Authorize]
     public IActionResult CreateNewComment(int postId, Comment comment)
     {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            UserProfile userProfile = _dbContext.UserProfiles
+                .SingleOrDefault(up => up.IdentityUserId == userId);
+
+            if (userProfile == null)
+            {
+                return NotFound();
+            }
+
         Post post = _dbContext.Posts
         .Include(p => p.Comments)
+        .ThenInclude(c => c.UserProfile)
+        .Include(p => p.UserProfile)
         .SingleOrDefault(p => p.Id == postId);
-
 
         if (post == null)
         {
             return NotFound();
         }
+
+        comment.PostId = postId;
         comment.CreateDateTime = DateTime.Now;
+        comment.UserProfileId = userProfile.Id;
+        comment.UserProfile = userProfile;
 
-        post.Comments.Add(comment);
-
+        _dbContext.Comments.Add(comment);
         _dbContext.SaveChanges();
-        return NoContent();
+
+        return Ok(comment);
     }
 }
