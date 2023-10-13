@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllPosts, getAllPostsByCategory, getAllPostsByTag } from "../../managers/postManager";
+import { deletePost, getAllPosts, getAllPostsByCategory, getAllPostsByTag } from "../../managers/postManager";
 import {
     Accordion,
     AccordionBody,
@@ -16,7 +16,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 
 
-export default function PostsList() {
+export default function PostsList({ loggedInUser }) {
     const [posts, setPosts] = useState([]);
     const [open, setOpen] = useState('0');
 
@@ -50,9 +50,6 @@ export default function PostsList() {
             .then(setPosts)
             .catch((err) => setError(err));
         }
-
-        getAllPostsByCategory(selectedCategoryId).then(setPosts);
-
     }, [selectedCategoryId]);
 
     useEffect(() => {
@@ -60,7 +57,7 @@ export default function PostsList() {
     }, []);
 
     useEffect(() => {
-        if (selectedTagId !== 0) {
+        if (selectedTagId != 0) {
             setError(null);
             getAllPostsByTag(selectedTagId)
                 .then(setPosts)
@@ -88,7 +85,19 @@ export default function PostsList() {
         navigate('create')
     }
 
-    
+    const handleDeletePost = (e, postId) => {
+        e.preventDefault();
+        // Show delete confirmation dialog 
+        if (window.confirm("Are you sure you want to delete this post?")) {
+            // User confirmed, delete the post
+            deletePost(postId)
+                .then(() => {
+                    //update the posts list
+                    getAllPosts().then(setPosts)
+                })
+                .catch((err) => setError(err));
+        }
+    }
 
     if (!posts.length) {
         return null;
@@ -137,12 +146,7 @@ export default function PostsList() {
                     </div>
                     :<div></div>       
             }
-
-
-
             </FormGroup>
-
-
             <div style={{ padding: "1rem" }}>
                 <Button 
                 onClick={(e) => {
@@ -171,11 +175,15 @@ export default function PostsList() {
                     {posts.map(p =>
                         <AccordionItem key={p.id}>
                             <AccordionHeader targetId={p.id.toString()}>
-                                <strong>{p.title}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{p.userProfile.fullName}&nbsp;&nbsp;&nbsp;&nbsp;<i>#{p.category.name}</i>
-                                
+                                <strong>{p.title}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{p.userProfile.fullName}&nbsp;&nbsp;&nbsp;&nbsp;<i>#{p.categoryId ? p.category.name : "nothin"}</i>
                                 <Link to={`/posts/${p.id}/comments`}>
                                     View Comments
                                 </Link>
+                                {
+                                    loggedInUser.id == p.userProfileId
+                                    ? <Link onClick={(e) => handleDeletePost(e,p.id)}>Delete</Link>
+                                    : <></>
+                                }
                             </AccordionHeader>
                     <Link to={`/posts/${p.id}/comments/create`}>
                         Add Comment

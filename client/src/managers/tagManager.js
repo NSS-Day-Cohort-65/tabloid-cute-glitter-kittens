@@ -30,3 +30,9 @@ export const createTag = async (tag) => {
     }
 };
 
+//delete a tag
+export const deleteTag = (id) => {
+    return fetch(`${apiUrl}/${id}`, {
+        method: "DELETE"
+    });
+};

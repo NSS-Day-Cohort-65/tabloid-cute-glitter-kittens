@@ -86,4 +86,35 @@ public class PostController : ControllerBase
         _dbContext.SaveChanges();
         return Created($"/api/post/{post.Id}", post);
     }
+
+    [HttpDelete("{postId}")]
+    [Authorize]
+    public IActionResult DeletePost( int postId)
+    {
+        Post PostToDelete = _dbContext.Posts.SingleOrDefault(p => p.Id == postId);
+        if (PostToDelete == null)
+        {
+            return NotFound();
+        }
+        else if (postId != PostToDelete.Id)
+        {
+            return BadRequest();
+        }
+        //delete comment for post
+        var relatedComments = _dbContext.Comments.Where(c => c.PostId == postId);
+        _dbContext.Comments.RemoveRange(relatedComments);
+
+        //delete reactions for post
+        var relatedReactions = _dbContext.PostReactions.Where(pr => pr.PostId == postId);
+        _dbContext.PostReactions.RemoveRange(relatedReactions);
+
+        //delete post tags
+        var relatedTags = _dbContext.PostTags.Where(pt => pt.PostId == postId);
+        _dbContext.PostTags.RemoveRange(relatedTags);
+
+        _dbContext.Posts.Remove(PostToDelete);
+        _dbContext.SaveChanges();
+
+        return NoContent();
+    }
 }
