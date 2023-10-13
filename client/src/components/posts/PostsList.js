@@ -175,7 +175,7 @@ export default function PostsList({ loggedInUser }) {
                     {posts.map(p =>
                         <AccordionItem key={p.id}>
                             <AccordionHeader targetId={p.id.toString()}>
-                                <strong>{p.title}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{p.userProfile.fullName}&nbsp;&nbsp;&nbsp;&nbsp;<i>#{p.category.name}</i>
+                                <strong>{p.title}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{p.userProfile.fullName}&nbsp;&nbsp;&nbsp;&nbsp;<i>#{p.categoryId ? p.category.name : "nothin"}</i>
                                 <Link to={`/posts/${p.id}/comments`}>
                                     View Comments
                                 </Link>
