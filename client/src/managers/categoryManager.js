@@ -13,3 +13,9 @@ export const createCategory = (category) => {
         body: JSON.stringify(category),
     }).then((res) => res.json())
 }
+
+export const deleteCategory = (id) => {
+    return fetch(`${_apiUrl}/${id}`, {
+        method: "DELETE"
+    });
+};

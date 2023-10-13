@@ -32,4 +32,28 @@ public class CategoryController : ControllerBase
         _dbContext.SaveChanges();
         return Created($"/api/categories/{category.Id}", category);
     }
+
+    [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult DeleteCategory(int id)
+    {
+        Category foundCategory = _dbContext.Categories.SingleOrDefault(c => c.Id == id);
+        
+        if (foundCategory == null)
+        {
+            return NotFound();
+        }
+
+        // changes any related post with the above category id to categoryId == null.
+        var relatedPosts = _dbContext
+            .Posts
+            .Where(pt => pt.CategoryId == id)
+            .ToList();
+
+        relatedPosts.ForEach(p => p.CategoryId = null);
+
+        _dbContext.Categories.Remove(foundCategory);
+        _dbContext.SaveChanges();
+        return NoContent();
+    }
 }
