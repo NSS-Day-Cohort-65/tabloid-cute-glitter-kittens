@@ -34,7 +34,6 @@ public class UserProfile
 
     public IdentityUser IdentityUser { get; set; }
     public bool IsActive { get; set; }
-
     public string FullName
     {
         get
