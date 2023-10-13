@@ -37,7 +37,6 @@ export default function CommentsList() {
                         <ListGroupItem key={c.id}>
                             <h5>{c.subject}</h5>
                             <p>{c.content}</p>
-                            <p><strong>Author:</strong> {c.userProfile.userName}</p>
                             <p><strong>Posted:</strong> {new Date(c.createDateTime).toLocaleDateString()}</p>
                         </ListGroupItem>
                     ))}

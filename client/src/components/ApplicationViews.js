@@ -13,6 +13,7 @@ import ReactionsList from "./reactions/ReactionList";
 import CommentsList from "./comments/CommentsList";
 import CreatePost from './posts/CreatePost';
 import { CreateTag } from "./tags/CreateTag.js";
+import CreateComment from "./comments/CommentForm";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -41,7 +42,13 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
                     <CommentsList />
                   </AuthorizedRoute>
                 } />
-         
+              <Route
+                path=":postId/comments/create"
+                element={
+                  <AuthorizedRoute loggedInUser={loggedInUser}>
+                    <CreateComment />
+                  </AuthorizedRoute>
+                } />
           <Route
             path='create'
             element={

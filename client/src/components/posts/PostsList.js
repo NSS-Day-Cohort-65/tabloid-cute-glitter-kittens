@@ -159,23 +159,27 @@ export default function PostsList() {
                     {/* {posts.map(p =>
                     p.isApproved ? (
                         <AccordionItem key={p.id}>
-                            <AccordionHeader targetId={p.id.toString()}>
-                                <strong>{p.title}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{p.userProfile.fullName}&nbsp;&nbsp;&nbsp;&nbsp;<i>#{p.category.name}</i>
-                            </AccordionHeader>
-                            <AccordionBody accordionId={p.id.toString()}>
-                                "insert child component here"
-                            </AccordionBody>
+                        <AccordionHeader targetId={p.id.toString()}>
+                        <strong>{p.title}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{p.userProfile.fullName}&nbsp;&nbsp;&nbsp;&nbsp;<i>#{p.category.name}</i>
+                        </AccordionHeader>
+                        <AccordionBody accordionId={p.id.toString()}>
+                        "insert child component here"
+                        </AccordionBody>
                         </AccordionItem>
-                    ) : ""
-                )} */}
+                        ) : ""
+                    )} */}
                     {posts.map(p =>
                         <AccordionItem key={p.id}>
                             <AccordionHeader targetId={p.id.toString()}>
                                 <strong>{p.title}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{p.userProfile.fullName}&nbsp;&nbsp;&nbsp;&nbsp;<i>#{p.category.name}</i>
+                                
                                 <Link to={`/posts/${p.id}/comments`}>
                                     View Comments
                                 </Link>
                             </AccordionHeader>
+                    <Link to={`/posts/${p.id}/comments/create`}>
+                        Add Comment
+                    </Link>
                             <AccordionBody accordionId={p.id.toString()}>
                                 <div className="container">
 
